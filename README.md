@@ -4,7 +4,7 @@
 
 ## The basics
 
-The API is available via `https` and expects and returns data in JSON format. Every request URL starts with **`https://fabman.io/api/v1/`** and most requests require [authentication](#Authentication).
+The Fabman API is available via `https` and expects and returns data in JSON format. Every request URL starts with **`https://fabman.io/api/v1/`** and most requests require [authentication](#Authentication).
 
 ### Live documentation
 You can browse all API endpoints, see required and optional fields and their default values at [https://fabman.io/api/v1/documentation](https://fabman.io/api/v1/documentation) — *you can even try out every endpoint right in your browser*. This is probably the easiest way to experiment and interact with the API.
@@ -80,6 +80,11 @@ Whenever you want to change such an entity, **you must submit the `lockVersion` 
 Many resources such as Members, Equipment and Packages have attributes that can contain rich text as HTML. Rich text attributes may contain lists, block quotes, links and simple text formatting.
 
 See the [rich text](sections/rich_text.md) section for details.
+
+## Embedding and resolving
+Some endpoints allow you to embed related entities into the response to reduce the number of requests needed. For example, when fetching a list of [members](sections/members.md), you can embed each member's active [packages](sections/packages.md). Otherwise you'd have to send a separate request for each member to determine who currently has which package.
+
+Resolving is a similar technique for reducing the number of requests needed. See the [embedding and resolving](sections/embedding_resolving.md) section for more details.
 
 ## Entities
 
