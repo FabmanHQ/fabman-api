@@ -38,6 +38,12 @@ export FABMAN_PASSWORD=<your password>
 curl --cookie-jar $FABMAN_COOKIE --header 'Content-Type: application/json' -d '{"emailAddress": "$FABMAN_EMAIL", "password": "$FABMAN_PASSWORD"}' https://fabman.io/api/v1/user/login
 ```
 
+You can use this cookie for any subsequent request by adding the `--cookie` param:
+
+``` shell
+curl --cookie $FABMAN_COOKIE -X GET https://fabman.io/api/v1/members
+```
+
 ## JSON data format
 
 We use JSON for all API data. This means that you have to send the `Content-Type` header `Content-Type: application/json` for all `POST` or `PUT` requests — otherwise you'll receive a `415 Unsupported Media Type` response error.
