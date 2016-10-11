@@ -27,4 +27,5 @@ The field `notes` allows [rich text content](rich_text.md).
 	- [Assign a member a new package](https://fabman.io/api/v1/documentation#!/members/postApiV1MembersIdPackages) to allow them to use equipment
 	- [Get a member's package](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdPackagesMemberpackageid), eg. to see the start and end date.
 	- [Update a member's package](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersIdPackagesMemberpackageid), eg. to set the end date.
+	- [Delete a member's package](https://fabman.io/api/v1/documentation#!/members/deleteApiV1MembersIdPackagesMemberpackageid) as it had never existed. (You might want to set an end date instead…)
 
