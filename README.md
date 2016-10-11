@@ -2,6 +2,8 @@
 
 **Welcome!** If you're trying to integrate your existing applications and tools with [Fabman](https://fabman.io) or create your own application working together with Fabman, you're in the right place!
 
+_Everything that can be done via the [Fabman web application](https://fabman.io/login) can be done via the API_. If you're not sure how to achieve something, [please open a GitHub issue](https://github.com/fabman/fabman-api/issues/new).
+
 ## The basics
 
 The Fabman API is available via `https` and expects and returns data in JSON format. Every request URL starts with **`https://fabman.io/api/v1/`** and most requests require [authentication](#Authentication).
