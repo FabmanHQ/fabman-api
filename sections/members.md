@@ -21,7 +21,7 @@ The fields `notes` and `billingInvoiceText` allow [rich text content](rich_text.
 - Invitation
 	- [Invite the member to create a user](https://fabman.io/api/v1/documentation#!/members/postApiV1MembersIdInvitation) sends an invitation email the member’s email address. (Calling this for an already-invited member re-sends the invitation email.)
 	- [Get invitation status](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdInvitation) to see if a member was invited and whether they have already accepted the invitation.
-- Keycards
+- Keycard
 	- Assign a keycard to a member via the [key assignment](key_assignments.md) process
 	- [Get a member's key status](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdKey) to check whether their key is active or disabled.
 	- [Change a member's key status](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersIdKey) to enable or disable a key.
