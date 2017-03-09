@@ -11,10 +11,10 @@ The fields `description` and `notes` allow [rich text content](rich_text.md).
 
 ## Endpoints
 
-- [List equipment](https://fabman.io/api/v1/documentation#!/resources/getApiV1Resources) will return a list of all equipment the current user has access to.
-- [Add equipment](https://fabman.io/api/v1/documentation#!/resources/postApiV1Resources) lets you add equipment to a space.
-- [Get equipment](https://fabman.io/api/v1/documentation#!/resources/getApiV1ResourcesId) returns an equipment with the given ID.
-- [Update equipment](https://fabman.io/api/v1/documentation#!/resources/putApiV1ResourcesId) allows you to change the settings of equipment.
-- [Pair a bridge to an equipment](https://fabman.io/api/v1/documentation#!/resources/putApiV1ResourcesIdBridge) by submitting the pairing code that's shown on the bridge display.
-- [Get information about an equipment's bridge](https://fabman.io/api/v1/documentation#!/resources/putApiV1ResourcesIdBridge) with the given equipment ID – like whether it is currently in use, idle or offline.
-- [Remove a bridge](https://fabman.io/api/v1/documentation#!/resources/deleteApiV1ResourcesIdBridge) from the equipment with the given ID.
+- [List equipment](https://fabman.io/api/v1/documentation#!/resources/getResources) will return a list of all equipment the current user has access to.
+- [Add equipment](https://fabman.io/api/v1/documentation#!/resources/postResources) lets you add equipment to a space.
+- [Get equipment](https://fabman.io/api/v1/documentation#!/resources/getResourcesId) returns an equipment with the given ID.
+- [Update equipment](https://fabman.io/api/v1/documentation#!/resources/putResourcesId) allows you to change the settings of equipment.
+- [Pair a bridge to an equipment](https://fabman.io/api/v1/documentation#!/resources/putResourcesIdBridge) by submitting the pairing code that's shown on the bridge display.
+- [Get information about an equipment's bridge](https://fabman.io/api/v1/documentation#!/resources/putResourcesIdBridge) with the given equipment ID – like whether it is currently in use, idle or offline.
+- [Remove a bridge](https://fabman.io/api/v1/documentation#!/resources/deleteResourcesIdBridge) from the equipment with the given ID.

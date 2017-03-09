@@ -9,7 +9,7 @@ A [user](users.md) can have access to multiple accounts.
 
 ## Endpoints
 
-- [List accounts](https://fabman.io/api/v1/documentation#!/accounts/getApiV1Accounts) will return a list of all accounts the current user has access to
-- [Create an account](https://fabman.io/api/v1/documentation#!/accounts/postApiV1Accounts) lets you create a new account. The current user will be the owner of the new account.
-- [Get an account](https://fabman.io/api/v1/documentation#!/accounts/getApiV1AccountsId) returns a single account with the given ID.
-- [Update an account](https://fabman.io/api/v1/documentation#!/accounts/putApiV1AccountsId) allows you to change the settings of an account.
+- [List accounts](https://fabman.io/api/v1/documentation#!/accounts/getAccounts) will return a list of all accounts the current user has access to
+- [Create an account](https://fabman.io/api/v1/documentation#!/accounts/postAccounts) lets you create a new account. The current user will be the owner of the new account.
+- [Get an account](https://fabman.io/api/v1/documentation#!/accounts/getAccountsId) returns a single account with the given ID.
+- [Update an account](https://fabman.io/api/v1/documentation#!/accounts/putAccountsId) allows you to change the settings of an account.
