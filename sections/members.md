@@ -18,6 +18,9 @@ The fields `notes` and `billingInvoiceText` allow [rich text content](rich_text.
 - Privileges
 	- [Get a member's current privileges](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdPrivileges). Defaults to `member`, but can be `admin` or `owner`.
 	- [Change a member's privileges](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersIdPrivileges) to make them Admins or Owners of your account.
+- Invitation
+	- [Invite the member to create a user](https://fabman.io/api/v1/documentation#!/members/postApiV1MembersIdInvitation) sends an invitation email the member’s email address. (Calling this for an already-invited member re-sends the invitation email.)
+	- [Get invitation status](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdInvitation) to see if a member was invited and whether they have already accepted the invitation.
 - Keycards
 	- Assign a keycard to a member via the [key assignment](key_assignments.md) process
 	- [Get a member's key status](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdKey) to check whether their key is active or disabled.
