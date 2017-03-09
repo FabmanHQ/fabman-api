@@ -19,13 +19,13 @@ A webhook can be subscribed to updates from the following categories:
 
 All JSON payloads follow the same format:
 
-``` json
+```
 {
 	"id": 9007199254741210,
 	"type": "member_created",
 	"createdAt": "2016-08-20T15:08:35.384Z",
 	"details": {
-		…
+		… // depends on the event type
 	}
 }
 ```
@@ -73,13 +73,13 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `resourceLog_created` A new entry in the activity log was created (because someone turned on a machine, asigned a key, …)
 * `resourceLog_updated` An existing log entry was modified, eg. because someone extended their session or stopped the machine.
 
-	``` json
+	```
 	{
-		…
+		…, // common fields
 		"details": {
-			"log": <the log entry>,
-			"resource": <the affected resource>,
-			"member": <member, if applicable. Otherwise null>
+			"log": {…}, // the created or updated log entry
+			"resource": {…}, // the affected resource,
+			"member": {…} // member, if applicable. Otherwise null
 		}
 	}
 	```
@@ -105,12 +105,12 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 ### Other
 * `test` is sent when you trigger a webhook test [via the API](https://fabman.io/api/v1/documentation#!/webhooks/postWebhooksIdTest) or the admin UI.
 
-	``` json
+	```
 	{
-		…
+		…, // common fields
 		"details": {
-			"message": <string>,
-			"createdBy": <member>
+			"message": "…", // A message with the name of the member who triggered the test event
+			"createdBy": {…} // The member who triggered the test event
 		}
 	}
 	```
