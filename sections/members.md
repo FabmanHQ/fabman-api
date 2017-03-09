@@ -12,11 +12,12 @@ The field `notes` allows [rich text content](rich_text.md).
 
 ## Endpoints
 - [List members](https://fabman.io/api/v1/documentation#!/members/getApiV1Members) will return a list of all equipment the current user has access to.
-- [Add a member](https://internal.fabman.io/api/v1/documentation#!/members/postApiV1Members) lets you add a member to your account.
+- [Add a member](https://fabman.io/api/v1/documentation#!/members/postApiV1Members) lets you add a member to your account.
 - [Get a member](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersId) returns the member with the given ID.
 - [Update a member](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersId) allows you to change the member's fields and lock/unlock their access to the account.
-- [Get a member's current privileges](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdPrivileges). Defaults to `member`, but can be `admin` or `owner`.
-- [Change a member's privileges](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersIdPrivileges) to make them Admins or Owners of your account.
+- Privileges
+	- [Get a member's current privileges](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdPrivileges). Defaults to `member`, but can be `admin` or `owner`.
+	- [Change a member's privileges](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersIdPrivileges) to make them Admins or Owners of your account.
 - Keycards
 	- Assign a keycard to a member via the [key assignment](key_assignments.md) process
 	- [Get a member's key status](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdKey) to check whether their key is active or disabled.

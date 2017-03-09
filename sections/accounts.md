@@ -1,6 +1,6 @@
 # Accounts
 
-An account is created for every Fabman customer. You'll need your account ID for creating entities like [members](members.md) or [equipment](equipment.md).
+An account is created for every Fabman customer. Every account has at least one [space](spaces.md). You'll need your account ID for creating every other entity like [members](members.md), [equipment](equipment.md) or [packages](packages.md).
 
 A [user](users.md) can have access to multiple accounts.
 
