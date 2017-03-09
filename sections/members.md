@@ -4,7 +4,7 @@ Members belong to an [account](accounts.md), have a home [space](spaces.md) and 
 
 The privileges of a member (`member`, `admin` or `owner`) determine what their user is allowed to read or change via the API or web interface.
 
-The field `notes` allows [rich text content](rich_text.md).
+The fields `notes` and `billingInvoiceText` allow [rich text content](rich_text.md).
 
 ##  Live API documentation
 

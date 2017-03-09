@@ -98,6 +98,8 @@ Resolving is a similar technique for reducing the number of requests needed. See
 - [Activity log](sections/log.md)
 - [Bookings](sections/bookings.md)
 - [Users](sections/users.md)
+- [Charges](sections/charges.md)
+- [Invoices](sections/invoices.md)
 
 ## License
 

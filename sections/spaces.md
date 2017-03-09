@@ -4,6 +4,8 @@ For now, every [account](accounts.md) has exactly one space that is created when
 
 Every space has opening hours and a list of holidays, both of which can be used to limit access to its [equipment](equipment.md).
 
+A space has billing settings like currency, invoice templates, invoice number format, …
+
 ## Live API documentation
 [https://fabman.io/api/v1/documentation#/spaces](https://fabman.io/api/v1/documentation#/spaces)
 
@@ -21,3 +23,6 @@ Every space has opening hours and a list of holidays, both of which can be used 
 	- [Get a space's holiday](https://fabman.io/api/v1/documentation#!/spaces/getApiV1SpacesIdHolidaysHolidayid), eg. to see the start and end date.
 	- [Update a space’s holiday](https://fabman.io/api/v1/documentation#!/spaces/putApiV1SpacesIdHolidaysHolidayid), eg. to change the date.
 	- [Delete a space's holiday](https://fabman.io/api/v1/documentation#!/spaces/deleteApiV1SpacesIdHolidaysHolidayid) as if it had never existed.
+- Billing settings
+	- [Get a space’s current billing settings](https://fabman.io/api/v1/documentation#!/spaces/getApiV1SpacesIdBillingsettings) returns the current billing settings for the space with the given ID.
+	- [Update a space’s billing settings](https://fabman.io/api/v1/documentation#!/spaces/putApiV1SpacesIdBillingsettings) to change the tax rate, invoice number format, etc.
