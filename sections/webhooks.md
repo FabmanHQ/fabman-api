@@ -102,7 +102,7 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `invoice_updated`
 
 
-### Other
+### Other events
 * `test` is sent when you trigger a webhook test [via the API](https://fabman.io/api/v1/documentation#!/webhooks/postWebhooksIdTest) or the admin UI.
 
 	```
