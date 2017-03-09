@@ -1,6 +1,6 @@
 # Equipment
 
-Equipment belongs to a [space](space.md) and an [account](account.md) and can be everything from machines to doors, check-in terminals or meeting rooms.
+Equipment belongs to a [space](spaces.md) and an [account](accounts.md) and can be everything from machines to doors, check-in terminals or meeting rooms.
 
 They are called `resources` in the API for historical reasons. So whenever you see a `resource` attribute (eg. on a [booking](bookings.md) or in the [access log](log.md)) it means "equpiment".
 

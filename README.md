@@ -91,10 +91,10 @@ Resolving is a similar technique for reducing the number of requests needed. See
 ## Entities
 
 - [Accounts](sections/accounts.md)
-- [Spaces](section/spaces.md)
+- [Spaces](sections/spaces.md)
 - [Members](sections/members.md)
 - [Packages](sections/packages.md)
-- [Equipment](section/equipment.md)
+- [Equipment](sections/equipment.md)
 - [Activity log](sections/log.md)
 - [Bookings](sections/bookings.md)
 - [Users](sections/users.md)

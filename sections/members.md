@@ -1,6 +1,6 @@
 # Members
 
-Members belong to an [account](account.md) and may have a corresponding [user](user.md) that allows them to sign in.
+Members belong to an [account](accounts.md), have a home [space](spaces.md) and may have a corresponding [user](users.md) that allows them to sign in and use the API amd the member or admin app.
 
 The privileges of a member (`member`, `admin` or `owner`) determine what their user is allowed to read or change via the API or web interface.
 
@@ -27,5 +27,5 @@ The field `notes` allows [rich text content](rich_text.md).
 	- [Assign a member a new package](https://fabman.io/api/v1/documentation#!/members/postApiV1MembersIdPackages) to allow them to use equipment
 	- [Get a member's package](https://fabman.io/api/v1/documentation#!/members/getApiV1MembersIdPackagesMemberpackageid), eg. to see the start and end date.
 	- [Update a member's package](https://fabman.io/api/v1/documentation#!/members/putApiV1MembersIdPackagesMemberpackageid), eg. to set the end date.
-	- [Delete a member's package](https://fabman.io/api/v1/documentation#!/members/deleteApiV1MembersIdPackagesMemberpackageid) as it had never existed. (You might want to set an end date instead…)
+	- [Delete a member's package](https://fabman.io/api/v1/documentation#!/members/deleteApiV1MembersIdPackagesMemberpackageid) as if it had never existed. (You might want to set an end date instead…)
 
