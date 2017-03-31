@@ -88,6 +88,10 @@ Some endpoints allow you to embed related entities into the response to reduce t
 
 Resolving is a similar technique for reducing the number of requests needed. See the [embedding and resolving](sections/embedding_resolving.md) section for more details.
 
+## Webhooks
+
+Use [Webhooks](sections/webhooks.md) to get notified whenever something changes, eg. someone edits a member, adds a booking or turns on any equipment. This is useful to synchronize information between Fabman and another application or automate common tasks.
+
 ## Entities
 
 - [Accounts](sections/accounts.md)
@@ -100,6 +104,7 @@ Resolving is a similar technique for reducing the number of requests needed. See
 - [Users](sections/users.md)
 - [Charges](sections/charges.md)
 - [Invoices](sections/invoices.md)
+- [Webhooks](sections/webhooks.md)
 
 ## License
 
