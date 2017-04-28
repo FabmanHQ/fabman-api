@@ -25,7 +25,7 @@ All JSON payloads follow the same format:
 	"type": "member_created",
 	"createdAt": "2016-08-20T15:08:35.384Z",
 	"details": {
-		… // depends on the event type
+		… // depends on the event type – see below for details
 	}
 }
 ```
@@ -50,11 +50,31 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `member_updated`
 * `member_deleted`
 
+	```
+	{
+		…, // common fields
+		"details": {
+			"member": {…} // the affected member
+		}
+	}
+	```
+
 ### Member package
 
 * `memberPackage_created`
 * `memberPackage_updated`
 * `memberPackage_deleted`
+
+	```
+	{
+		…, // common fields
+		"details": {
+			"memberPackage": {…}, // the details of this member’s package (fromDate, untilDate, …)
+			"member": {…}, // the affected member
+			"package": {…} // the package that was assigned to the member
+		}
+	}
+	```
 
 ### Member key
 
@@ -62,6 +82,15 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `memberKey_updated`
 * `memberKey_deleted`
 
+	```
+	{
+		…, // common fields
+		"details": {
+			"key": {…}, // the key including its type and ID token
+			"member": {…}, // the member whose key changed
+		}
+	}
+	```
 
 ### Activity log
 
@@ -73,7 +102,7 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 		…, // common fields
 		"details": {
 			"log": {…}, // the created or updated log entry
-			"resource": {…}, // the affected resource,
+			"resource": {…}, // the affected resource
 			"member": {…} // member, if applicable. Otherwise null
 		}
 	}
