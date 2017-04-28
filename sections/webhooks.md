@@ -62,11 +62,6 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `memberKey_updated`
 * `memberKey_deleted`
 
-### Equipment
-
-* `resource_created`
-* `resource_updated`
-* `resource_deleted`
 
 ### Activity log
 
@@ -83,24 +78,6 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 		}
 	}
 	```
-
-
-### Booking
-
-* `booking_created`
-* `booking_updated`
-* `booking_deleted`
-
-### Charge
-
-* `charge_created`
-* `charge_updated`
-* `charge_deleted`
-
-### Invoice
-* `invoice_created`
-* `invoice_updated`
-
 
 ### Other events
 * `test` is sent when you trigger a webhook test [via the API](https://fabman.io/api/v1/documentation#!/webhooks/postWebhooksIdTest) or the admin UI.
