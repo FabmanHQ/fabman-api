@@ -11,11 +11,8 @@ A webhook can be subscribed to updates from the following categories:
 * [Member](#member)
 * [Member package](#member-package)
 * [Member key](#member-key)
-* [Equipment](#equipment)
 * [Activity log](#activity-log)
 * [Booking](#booking)
-* [Charge](#charge)
-* [Invoice](#invoice)
 
 All JSON payloads follow the same format:
 
@@ -104,6 +101,23 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 			"log": {…}, // the created or updated log entry
 			"resource": {…}, // the affected resource
 			"member": {…} // member, if applicable. Otherwise null
+		}
+	}
+	```
+	
+### Booking
+
+* `booking_created`
+* `booking_updated`
+* `booking_deleted`
+
+	```
+	{
+		…, // common fields
+		"details": {
+			"booking": {…}, // the created, updated or deleted booking
+			"resource": {…}, // the affected resource
+			"member": {…} // the member who booked the equipment. (null if booked as "staff only")
 		}
 	}
 	```
