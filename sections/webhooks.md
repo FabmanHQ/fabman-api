@@ -11,8 +11,12 @@ A webhook can be subscribed to updates from the following categories:
 * [Member](#member)
 * [Member package](#member-package)
 * [Member key](#member-key)
+* [Member training](#member-training)
+* [Equipment](#equipment)
 * [Activity log](#activity-log)
 * [Booking](#booking)
+* [Charge](#charge)
+* [Invoice](#invoice)
 
 All JSON payloads follow the same format:
 
@@ -47,14 +51,14 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `member_updated`
 * `member_deleted`
 
-	```
-	{
-		…, // common fields
-		"details": {
-			"member": {…} // the affected member
-		}
+```
+{
+	…, // common fields
+	"details": {
+		"member": {…} // the created, updated or deleted member
 	}
-	```
+}
+```
 
 ### Member package
 
@@ -62,16 +66,16 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `memberPackage_updated`
 * `memberPackage_deleted`
 
-	```
-	{
-		…, // common fields
-		"details": {
-			"memberPackage": {…}, // the details of this member’s package (fromDate, untilDate, …)
-			"member": {…}, // the affected member
-			"package": {…} // the package that was assigned to the member
-		}
+```
+{
+	…, // common fields
+	"details": {
+		"memberPackage": {…}, // the details of this member’s package (fromDate, untilDate, …)
+		"member": {…}, // the affected member
+		"package": {…} // the package that was assigned to the member
 	}
-	```
+}
+```
 
 ### Member key
 
@@ -79,31 +83,61 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `memberKey_updated`
 * `memberKey_deleted`
 
-	```
-	{
-		…, // common fields
-		"details": {
-			"key": {…}, // the key including its type and ID token
-			"member": {…}, // the member whose key changed
-		}
+```
+{
+	…, // common fields
+	"details": {
+		"key": {…}, // the key including its type and ID token
+		"member": {…}, // the member whose key changed
 	}
-	```
+}
+```
+### Member training
 
+* `memberTraining_created`
+* `memberTraining_updated`
+* `memberTraining_deleted`
+
+```
+{
+	…, // common fields
+	"details": {
+		"memberTraining": {…}, // the created, updated or deleted training record
+		"member": {…}, // the affected member
+	}
+}
+```
+
+### Equipment
+
+* `resource_created`
+* `resource_updated`
+* `resource_deleted`
+
+```
+{
+	…, // common fields
+	"details": {
+		"resource": {…} // the created, updated or deleted equipment
+	}
+}
+```
+	
 ### Activity log
 
 * `resourceLog_created` A new entry in the activity log was created (because someone turned on a machine, asigned a key, …)
 * `resourceLog_updated` An existing log entry was modified, eg. because someone extended their session or stopped the machine.
 
-	```
-	{
-		…, // common fields
-		"details": {
-			"log": {…}, // the created or updated log entry
-			"resource": {…}, // the affected resource
-			"member": {…} // member, if applicable. Otherwise null
-		}
+```
+{
+	…, // common fields
+	"details": {
+		"log": {…}, // the created or updated log entry
+		"resource": {…}, // the affected resource
+		"member": {…} // member, if applicable. Otherwise null
 	}
-	```
+}
+```
 	
 ### Booking
 
@@ -111,17 +145,51 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 * `booking_updated`
 * `booking_deleted`
 
-	```
-	{
-		…, // common fields
-		"details": {
-			"booking": {…}, // the created, updated or deleted booking
-			"resource": {…}, // the affected resource
-			"member": {…} // the member who booked the equipment. (null if booked as "staff only")
-		}
+```
+{
+	…, // common fields
+	"details": {
+		"booking": {…}, // the created, updated or deleted booking
+		"resource": {…}, // the affected resource
+		"member": {…} // the member who booked the equipment. (null if booked as "staff only")
 	}
-	```
+}
+```
+	
+### Charge
 
+* `charge_created`
+* `charge_updated`
+* `charge_deleted`
+
+```
+{
+	…, // common fields
+	"details": {
+		"charge": {…}, // the created, updated or deleted charge
+		"member": {…} // the affected member
+	}
+}
+```
+	
+### Invoice
+
+* `invoice_created`
+	
+	*Note: Creating an invoice will trigger `charge_updated` events for every existing charge that’s added to the invoice.*
+* `invoice_updated`
+
+```
+{
+	…, // common fields
+	"details": {
+		"invoice": {…}, // the created or updated invoice
+		"charges": […], // all of the invoice’s charges
+		"member": {…} // the affected member
+	}
+}
+```
+	
 ### Other events
 * `test` is sent when you trigger a webhook test [via the API](https://fabman.io/api/v1/documentation#!/webhooks/postWebhooksIdTest) or the admin UI.
 
