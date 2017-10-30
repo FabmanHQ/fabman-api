@@ -99,6 +99,7 @@ Use [Webhooks](sections/webhooks.md) to get notified whenever something changes,
 - [Members](sections/members.md)
 - [Packages](sections/packages.md)
 - [Equipment](sections/equipment.md)
+- [Bridges](sections/bridges.md)
 - [Activity log](sections/log.md)
 - [Bookings](sections/bookings.md)
 - [Users](sections/users.md)
