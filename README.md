@@ -94,17 +94,22 @@ Use [Webhooks](sections/webhooks.md) to get notified whenever something changes,
 
 ## Entities
 
+The most important entities are:
+
 - [Accounts](sections/accounts.md)
 - [Spaces](sections/spaces.md)
 - [Members](sections/members.md)
 - [Packages](sections/packages.md)
 - [Equipment](sections/equipment.md)
+- [Bridges](sections/bridges.md)
 - [Activity log](sections/log.md)
 - [Bookings](sections/bookings.md)
 - [Users](sections/users.md)
 - [Charges](sections/charges.md)
 - [Invoices](sections/invoices.md)
 - [Webhooks](sections/webhooks.md)
+
+Check the [live documentation](#live-documentation) for all available entities and endpoints.
 
 ## License
 
