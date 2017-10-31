@@ -22,8 +22,8 @@ Use the `/access` endpoint to check whether a member is allowed to use the given
 * If the member is allowed to use the equipment, Fabman will respond with a `type: "allowed"` and start a new [usage session](#usage-sessions) in the activity log. The response will contain (among other things):
 	* the member’s ID
 	* their name (in the `message` field)
-	* the `sessionId` for this [usage session](#usage-sessions).
-	* maximum duration the member is allowed to use the equipment (eg. limited by opening hours or an upcoming booking). The equipment _must_ shut down when this time has passed and send a `/stop` request to the server to close the [usage session](#usage-sessions) (unless the `stopped` flag is set).
+	* the `sessionId` for this [usage session](#usage-sessions)
+	* the maximum duration (in seconds) the member is allowed to use this equipment (eg. limited by opening hours or an upcoming booking). The equipment _must_ shut down when this time has passed and send a `/stop` request to the server to close the [usage session](#usage-sessions) (unless the `stopped` flag is set).
 	* a `stopped` flag. If this flag is set, the new usage session was implicitly stopped and is already closed. (See [usage session](#usage-sessions) below.)
 
 
@@ -49,11 +49,11 @@ Every `/access` or `/heartbeat` request expects a `configVersion` parameter. If 
 
 If the submitted `configVersion` is outdated (or `null`/`0`), the response will contain the current bridge configuration in the `config` field. In contains (among other things):
 
-* The `configVersion` of this configuration
-* The type of equipment the bridge is connected to (Laser cutter, door, 3D printer, …)
-* The current name of the equipment
+* the `configVersion` for this configuration
+* the type of equipment the bridge is connected to (Laser cutter, door, 3D printer, …)
+* the current name of the equipment
 * I/O pin and relais configuration
-* Safety settings such as dead man intervals
+* safety settings such as dead man intervals
 
 See the [/heartbeat](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeHeartbeat) or [/access](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeAccess) endpoint documentation for details.
 
