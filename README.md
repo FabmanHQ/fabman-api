@@ -68,18 +68,18 @@ We recommend baking 429 response-handling in to your HTTP handling at a low leve
 
 ## Create and update entities
 
-Whenever you create a new entity (usually by `POST`ing to a collection endpoint), you can omit any non-required fields to set them to their default values. If you provide additional fields that are not expected by the API, you will receive a **400 Bad Request** response.
+Whenever you create a new entity (e.g., by `POST`ing to a collection endpoint), you can omit any non-required fields to set them to their default values. If you provide additional fields that aren’t expected by the API, you will receive a **400 Bad Request** response.
 
-Whenever you update an entity (usually by `PUT`ing to the URL of the entity), you can omit any unchanged fields. If you submit any additional or read-only fields that are not expected by the API, they will be silently ignored. This allows you to GET an entity, change it and submit it without having to filter read-only fields returned by the original GET request.
+Whenever you update an entity (e.g., by `PUT`ing to the URL of the entity), you can omit any unchanged fields. If you submit any additional or read-only fields that aren’t expected by the API, they’ll be silently ignored. This allows you to GET an entity, change it and submit it without having to filter read-only fields returned by the original GET request.
 
 ## Optimistic locking
-Most entities contain a `lockVersion` attribute that is used for optimistic locking. The field is automatically incremented whenever someone updates the entity.
+Most entities contain a `lockVersion` attribute that’s used for optimistic locking. The field is automatically incremented whenever someone updates the entity.
 
 Whenever you want to change such an entity, **you must submit the `lockVersion` field unchanged.** If someone else has modified the entity since you last saw it, the update will fail with a **409 Conflict** response to avoid unintentionally overwriting their changes. Simply load the new version of the entity, merge your changes and send another update request.
 
 ## Rich text content
 
-Many resources such as Members, Equipment and Packages have attributes that can contain rich text as HTML. Rich text attributes may contain lists, block quotes, links and simple text formatting.
+Many resources such as Members, Equipment, and Packages have attributes that can contain rich text as HTML. Rich text attributes may contain lists, block quotes, links, and simple text formatting.
 
 See the [rich text](sections/rich_text.md) section for details.
 
@@ -90,7 +90,7 @@ Resolving is a similar technique for reducing the number of requests needed. See
 
 ## Webhooks
 
-Use [Webhooks](sections/webhooks.md) to get notified whenever something changes, eg. someone edits a member, adds a booking or turns on any equipment. This is useful to synchronize information between Fabman and another application or automate common tasks.
+Use [Webhooks](sections/webhooks.md) to get notified whenever something changes (e.g., someone edits a member, adds a booking or turns on any equipment). This is useful to synchronize information between Fabman and another application or automate common tasks.
 
 ## Entities
 
