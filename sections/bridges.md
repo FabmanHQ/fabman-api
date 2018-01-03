@@ -1,6 +1,6 @@
 # Bridges
 
-The easiest way to connect any machine to Fabman is [via Fabman bridges](http://help.fabman.io/article/15-pairing). But you can use the bridge API to build a custom integration.
+The easiest way to connect any machine to Fabman is [via Fabman bridges](http://help.fabman.io/article/15-pairing). But you can use the bridge API to build custom integrations.
 
 All [bridge API endpoints](#endpoints) require an API key for authentication. You can create an API key for every equipment [via the Fabman web application](http://help.fabman.io/article/32-create-a-bridge-api-key) or [via the equipment API](equipment.md#endpoints). Once you have a key, add it to every request as part of the `Authorization` header:
 
@@ -19,12 +19,12 @@ A bridge is considered "offline" if it does not send any request (`/heartbeat`, 
 
 Use the `/access` endpoint to check whether a member is allowed to use the given equipment at that moment. Check the `type` field of the response to distinguish between possible results:
 
-* If the member is allowed to use the equipment, Fabman will respond with a `type: "allowed"` and start a new [usage session](#usage-session) in the activity log. The response will contain (among other things):
+* If the member is allowed to use the equipment, Fabman will respond with a `type: "allowed"` and start a new [usage session](#usage-sessions) in the activity log. The response will contain (among other things):
 	* the member’s ID
 	* their name (in the `message` field)
-	* the `sessionId` for this [usage session](#usage-session).
-	* maximum duration the member is allowed to use the equipment (eg. limited by opening hours or an upcoming booking). The equipment _must_ shut down when this time has passed and send a `/stop` request to the server to close the [usage session](#usage-session) (unless the `stopped` flag is set).
-	* a `stopped` flag. If this flag is set, the new usage session was implicitly stopped and is already closed. (See [usage session](#usage-session) below.)
+	* the `sessionId` for this [usage session](#usage-sessions)
+	* the maximum duration (in seconds) the member is allowed to use this equipment (eg. limited by opening hours or an upcoming booking). The equipment _must_ shut down when this time has passed and send a `/stop` request to the server to close the [usage session](#usage-sessions) (unless the `stopped` flag is set).
+	* a `stopped` flag. If this flag is set, the new usage session was implicitly stopped and is already closed. (See [usage session](#usage-sessions) below.)
 
 
 * If the member is not allowed to use the equipment, Fabman will respond with a `type: "denied"` response. This _must not_ affect the current session (if any). The response will contain the reason for the rejection. The reason should be displayed to the user but the bridge should not change the status of the current usage session (if any) or any deadman controls or alerts (if applicable).
@@ -49,15 +49,15 @@ Every `/access` or `/heartbeat` request expects a `configVersion` parameter. If 
 
 If the submitted `configVersion` is outdated (or `null`/`0`), the response will contain the current bridge configuration in the `config` field. In contains (among other things):
 
-* The `configVersion` of this configuration
-* The type of equipment the bridge is connected to (Laser cutter, door, 3D printer, …)
-* The current name of the equipment
+* the `configVersion` for this configuration
+* the type of equipment the bridge is connected to (Laser cutter, door, 3D printer, …)
+* the current name of the equipment
 * I/O pin and relais configuration
-* Safety settings such as dead man intervals
+* safety settings such as dead man intervals
 
 See the [/heartbeat](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeHeartbeat) or [/access](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeAccess) endpoint documentation for details.
 
-The bridge can ignore any configuration parameters it does not understand or support, but it must save the `configVersion` together with any configuration settings it uses. The bridge should submit this `configVersion` as part of all subsequent `/access` or `/heartbeat` requests to avoid transmitting the  (quite exhaustive) configuration object with every response.
+The bridge can ignore any configuration parameters it does not understand or support (degrading gracefully, where possible), but it must save the `configVersion` together with any configuration settings it uses. The bridge should submit this `configVersion` as part of all subsequent `/access` or `/heartbeat` requests to avoid transmitting the (quite exhaustive) configuration object with every response.
 
 
 ## Live API documentation
@@ -65,6 +65,6 @@ The bridge can ignore any configuration parameters it does not understand or sup
 
 ## Endpoints
 
-- [Send heartbeat](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeHeartbeat) will update the bridge’s online status and sync any configuration changes, if needed.
-- [Request access](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeAccess) checks if a member (identified by their access key or their ID) is allowed to turn on the equipment right now. If the bridge’s configuration is not up to date, the response will also contain the latest configuration.
+- [Send heartbeat](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeHeartbeat) will update the bridge’s online status and sync any [configuration changes](#bridge-configuration), if needed.
+- [Request access](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeAccess) checks if a member (identified by their access key or their ID) is allowed to turn on the equipment right now. If the bridge’s configuration is not up to date, the response will also contain the latest [configuration](#bridge-configuration).
 - [Stop](https://fabman.io/api/v1/documentation/#!/bridge/postBridgeStop) tells Fabman that a user has stopped using the equipment.
