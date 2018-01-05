@@ -9,8 +9,7 @@ All [bridge API endpoints](#endpoints) require an API key for authentication. Yo
 ```
 **Don’t forget the `Bearer` prefix!** Replace `8d29ff56-b9e3-40b5-9a86-f423fe959b93` with the API key for your equipment.
 
-When using the Live API page, you’ll have to manually prepend `Bearer ` to the API key when entering it in the Authorization dialog:
-![Authorization dialog](./api-bearer.png)
+When using [the Live API page](https://fabman.io/api/v1/documentation), you can click on the "Authorize" button at the top to enter your API key.
 
 
 ## Heartbeats
@@ -26,13 +25,13 @@ Use the `/access` endpoint to check whether a member is allowed to use the given
 	* the member’s ID
 	* their name (in the `message` field)
 	* the `sessionId` for this [usage session](#usage-sessions)
-	* the maximum duration (in seconds) the member is allowed to use this equipment (e.g., limited by opening hours or an upcoming booking). The equipment _must_ shut down when this time has passed and send a `/stop` request to the server to close the [usage session](#usage-sessions) (unless the `stopped` flag is set).
+	* the maximum duration (in seconds) the member is allowed to use this equipment, e.g., until an upcoming booking or the end of opening hours. The equipment _must_ shut down when this time has passed and send a `/stop` request to the server to close the [usage session](#usage-sessions) (unless the `stopped` flag is set).
 	* a `stopped` flag. If this flag is set, the new usage session was implicitly stopped and is already closed. (See [usage session](#usage-sessions) below.)
 
 
 * If the member is not allowed to use the equipment, Fabman will respond with a `type: "denied"` response. This _must not_ affect the current session (if any). The response will contain the reason for the rejection. The reason should be displayed to the user but the bridge should not change the status of the current usage session (if any) or any deadman controls or alerts (if applicable).
 
-* Fabman may also respond with `type: "message"` when the access request was neither allowed nor rejected but was intercepted by a different process (e.g., a key assignment). The bridge should display the contained messages and then continue operation as if nothing happened.
+* Fabman may also respond with `type: "message"` when the access request was neither allowed nor rejected but was intercepted by a different process, e.g., a key assignment. The bridge should display the contained messages and then continue operation as if nothing happened.
 
 ## Usage sessions
 
@@ -44,7 +43,7 @@ Once a `sessionId` has been submitted in a `/stop` request _and_ was confirmed w
 
 If the `allowed` access response contains `stopped: true`, then usage session was implicitly stopped (as if the bridge had sent a `/stop` request right after the `/access` request). The bridge should behave as if it just submitted a successful `/stop` request, (i.e., discard the new `sessionId` and don’t send a `/stop` request for this session). This feature is used for door bridges to avoid having to send two requests whenever someone opens the door. The bridge can simply send a `/access` request and, if it receives a `allowed` response, open the door for a few seconds without having to send a separate `/stop` request.
 
-Access responses of any other type (e.g., `denied` or `message`) will _never_ contain a `sessionId` and should never affect the session ID that’s currently stored on the bridge.
+Access responses of any other type (e.g. `denied` or `message`) will _never_ contain a `sessionId` and should never affect the session ID that’s currently stored on the bridge.
 
 ## Bridge configuration
 
