@@ -16,11 +16,11 @@ cURL examples in this documentation can be copy & pasted into a shell prompt to 
 
 ## Authentication
 
-Most requests require authentication. At the moment only cookie authentication is avaiable, but other methods will follow soon.
+Most requests require authentication. You can use either cookies or API keys for authentication. Both cookies and API keys act as a bearer tokens: anyone who has that cookie or API key can see and change everything you have access to — so you want to guard them as well as you guard your password.
 
 ### Cookie authentication
 
-The simplest way to authenticate is by obtaining an authentication cookie using your email address and password. The cookie acts as a bearer token, so anyone who has that cookie can see and change everything you have access — so you want to guard it as well as you guard your password.
+The simplest way to authenticate is by obtaining an authentication cookie using your email address and password.
 
 If you're using the [interactive documentation page](#basics), you can simply sign in via [the web form](https://fabman.io/login) and your browser will automatically use that cookie for all API requests.
 
@@ -35,16 +35,57 @@ export FABMAN_COOKIE=~/.fabman-cookie
 Then request a new cookie by `POST`ing to `/user/login`:
 
 ``` shell
-export FABMAN_EMAIL=<your email address>
-export FABMAN_PASSWORD=<your password>
-curl --cookie-jar $FABMAN_COOKIE --header 'Content-Type: application/json' -d '{"emailAddress": "$FABMAN_EMAIL", "password": "$FABMAN_PASSWORD"}' https://fabman.io/api/v1/user/login
+curl --cookie-jar $FABMAN_COOKIE -H 'Content-Type: application/json' -d '{"emailAddress": "<your email address>", "password": "<your password>"}' https://fabman.io/api/v1/user/login
 ```
 
 You can use this cookie for any subsequent request by adding the `--cookie` param:
 
 ``` shell
-curl --cookie $FABMAN_COOKIE -X GET https://fabman.io/api/v1/members
+curl --cookie $FABMAN_COOKIE https://fabman.io/api/v1/members
 ```
+
+
+
+### API keys
+
+Instead of cookies you can also use an API key token to authenticate your API requests.
+
+#### Creating an API key
+To create an API key, you need to submit the ID of the member that the API key will impersonate.
+
+There’s no UI for creating API keys yet, but you can [create a key via the interactive documentation page](https://fabman.io/api/v1/documentation#!/api45keys/postApikeys). You can then fetch the actual token via [GET /api-keys/{id}/api-key](https://fabman.io/api/v1/documentation#!/api45keys/getApikeysIdApikey).
+
+If you’ve set up a cURL cookie jar [as described above](#cookie-authentication), you can also create an API key via cURL:
+
+``` shell
+curl --cookie $FABMAN_COOKIE -H 'Content-Type: application/json' -d '{"member":"<id of the member to impersonate>"}' https://fabman.io/api/v1/api-keys
+```
+
+and then fetch the API key token:
+
+``` shell
+curl --cookie $FABMAN_COOKIE https://fabman.io/api/v1/api-keys/{id}/token
+```
+
+#### Using an API key
+
+Once you have a key, you can send it as a bearer token with the Authorization header:
+
+```
+Authorization: Bearer <your api key token>
+# for example
+Authorization: Bearer 8d29ff56-b9e3-40b5-9a86-f423fe959b93
+ ```
+
+You can also send the API key as the username of a basic authentication (without a password). This is convenient when using cURL:
+
+``` shell
+curl -u '<your api key token>:' https://fabman.io/api/v1/members
+# for example
+curl -u '8d29ff56-b9e3-40b5-9a86-f423fe959b93:' https://fabman.io/api/v1/members
+```
+
+Don't forget the colon after the token.
 
 ## JSON data format
 

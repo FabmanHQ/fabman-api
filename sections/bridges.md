@@ -5,7 +5,7 @@ The easiest way to connect any machine to Fabman is [via Fabman bridges](http://
 All [bridge API endpoints](#endpoints) require an API key for authentication. You can create an API key for every equipment [via the Fabman web application](http://help.fabman.io/article/32-create-a-bridge-api-key) or [via the equipment API](equipment.md#endpoints). Once you have a key, add it to every request as part of the `Authorization` header:
 
 ```
- Authorization: Bearer 8d29ff56-b9e3-40b5-9a86-f423fe959b93
+Authorization: Bearer 8d29ff56-b9e3-40b5-9a86-f423fe959b93
 ```
 **Don’t forget the `Bearer` prefix!** Replace `8d29ff56-b9e3-40b5-9a86-f423fe959b93` with the API key for your equipment.
 
