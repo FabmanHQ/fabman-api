@@ -6,7 +6,7 @@ _Everything that can be done via the [Fabman web application](https://fabman.io/
 
 ## The basics
 
-The Fabman API is available via `https` and expects and returns data in JSON format. Every request URL starts with **`https://fabman.io/api/v1/`** and most requests require [authentication](#Authentication).
+The Fabman API is available via `https` and expects and returns data in JSON format. Every request URL starts with **`https://fabman.io/api/v1/`** and most requests require [authentication](#authentication).
 
 ### Live documentation
 You can browse all API endpoints, see required and optional fields and their default values at [https://fabman.io/api/v1/documentation](https://fabman.io/api/v1/documentation) — *you can even try out every endpoint right in your browser*. This is probably the easiest way to experiment and interact with the API.
@@ -116,7 +116,7 @@ Whenever you update an entity (e.g. by `PUT`ing to the URL of the entity), you c
 ## Optimistic locking
 Most entities contain a `lockVersion` attribute that’s used for optimistic locking. The field is automatically incremented whenever someone updates the entity.
 
-Whenever you want to change such an entity, **you must submit the `lockVersion` field unchanged.** If someone else has modified the entity since you last saw it, the update will fail with a **409 Conflict** response to avoid unintentionally overwriting their changes. Simply load the new version of the entity, merge your changes and send another update request.
+Whenever you want to change such an entity, **you must submit the `lockVersion` field unchanged.** If someone else has modified the entity since you last saw it, the update will fail with a **409 Conflict** response to avoid unintentionally overwriting their changes. When this happens, you can load the new version of the entity, merge your changes and send another update request.
 
 ## Rich text content
 
