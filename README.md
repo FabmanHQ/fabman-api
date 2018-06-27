@@ -48,11 +48,11 @@ curl --cookie $FABMAN_COOKIE https://fabman.io/api/v1/members
 
 ### API keys
 
-Instead of cookies you can also use an API key token to authenticate your API requests.
+Instead of cookies you can also use an API key token to authenticate your API requests. Every API key belongs to a particular member. Any requests authenticated via an API key are executed as if they were made by the member that the API key belongs to.
+
+API keys don’t expire automatically and remain valid until you delete them.
 
 #### Creating an API key
-To create an API key, you need to submit the ID of the member that the API key will impersonate.
-
 There’s no UI for creating API keys yet, but you can [create a key via the interactive documentation page](https://fabman.io/api/v1/documentation#!/api45keys/postApikeys). You can then fetch the actual token via [GET /api-keys/{id}/api-key](https://fabman.io/api/v1/documentation#!/api45keys/getApikeysIdApikey).
 
 If you’ve set up a cURL cookie jar [as described above](#cookie-authentication), you can also create an API key via cURL:
