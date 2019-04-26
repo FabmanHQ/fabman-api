@@ -11,6 +11,7 @@ A webhook can be subscribed to updates from the following categories:
 * [Member](#member)
 * [Member package](#member-package)
 * [Member key](#member-key)
+* [Member device](#member-device)
 * [Member training](#member-training)
 * [Equipment](#equipment)
 * [Activity log](#activity-log)
@@ -92,6 +93,24 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 	}
 }
 ```
+
+### Member device
+
+A member device is a smartphone, tablet or computer that’s used to switch on equipment via QR codes.
+
+* `memberDevice_created`
+* `memberDevice_updated`
+
+```
+{
+	…, // common fields
+	"details": {
+		"device": {…}, // the device including its automatically determined name and user agent
+		"member": {…}, // the member whose device changed
+	}
+}
+```
+
 ### Member training
 
 * `memberTraining_created`
@@ -122,7 +141,7 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 	}
 }
 ```
-	
+
 ### Activity log
 
 * `resourceLog_created` A new entry in the activity log was created (because someone turned on a machine, asigned a key, …)
@@ -138,7 +157,7 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 	}
 }
 ```
-	
+
 ### Booking
 
 * `booking_created`
@@ -155,7 +174,7 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 	}
 }
 ```
-	
+
 ### Charge
 
 * `charge_created`
@@ -171,11 +190,11 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 	}
 }
 ```
-	
+
 ### Invoice
 
 * `invoice_created`
-	
+
 	*Note: Creating an invoice will trigger `charge_updated` events for every existing charge that’s added to the invoice.*
 * `invoice_updated`
 
@@ -189,7 +208,7 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not rec
 	}
 }
 ```
-	
+
 ### Other events
 * `test` is sent when you trigger a webhook test [via the API](https://fabman.io/api/v1/documentation#!/webhooks/postWebhooksIdTest) or the admin UI.
 
