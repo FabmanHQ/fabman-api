@@ -12,4 +12,4 @@ The `PUT` request will stall for a few seconds. As soon as a keycard was assigne
 
 If no unknown keycard is swiped accross the bridge for 5 seconds, the request will return a **202 Accepted** response, but will keep the equipment reserved for 10 more seconds. Just repeat `PUT`ing the equipment ID during this time to maintain your reservation or submit a different equipment ID to switch equipment. If a keycard is successfully assigned while no `PUT` requests is active, you'll receive a **204 No Content** response to your next `PUT` request to let you know that it succeeded.
 
-If you want to abort the prcoess, you can either let the reservation time out or [delete your key assignment](https://fabman.io/api/v1/documentation#!/key-assignments/deleteKeyassignmentsId) (recommended).
+If you want to abort the process, you can either let the reservation time out or [delete your key assignment](https://fabman.io/api/v1/documentation#!/key-assignments/deleteKeyassignmentsId) (recommended).
