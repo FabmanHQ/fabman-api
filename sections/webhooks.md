@@ -4,8 +4,6 @@ Fabman can notify your application through webhooks when something is changed. A
 
 For each event, Fabman will POST to the webhook URL with a JSON body that contains details about the event. Fabman will only consider HTTP status codes in the 2xx range to be a successful response. We will not follow a 3xx redirect.
 
-In case of an unsuccessful response, Fabman will attempt to call the webhook URL multiple times before deactivating the webhook. The duration between attempts will grow exponentially longer to give your service time to recover.
-
 A webhook can be subscribed to updates from the following categories:
 
 * [Member](#member)
@@ -41,9 +39,16 @@ where
 
 After sending the event, Fabman will record the interaction with your application so it can be introspected for debugging.
 
+
+## Unsuccessful deliveries and retries
+
+In case of an unsuccessful response, Fabman will attempt to call the webhook URL multiple times before deactivating the webhook. The duration between attempts will grow exponentially longer to give your service time to recover.
+
+
 ## Paused or deactivated webhooks
 
 Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not receive any events. But events from the selected categories will still be queued and will be submitted once you un-pause the webhook.
+
 
 ## Event types
 ### Member
