@@ -34,7 +34,7 @@ where
 
 * `id` is a unique id for this event
 * `type` denotes the [type of the event](#event-types)
-* `createdAt` shows when the event was created (which might be different from when the event was finally deliviered)
+* `createdAt` shows when the event was created (which can be different from when the event was finally deliviered)
 * `details` contains detailed information about the event. The exact contents depends on the event type.
 
 After sending the event, Fabman will record the interaction with your application so it can be introspected for debugging.
@@ -42,12 +42,12 @@ After sending the event, Fabman will record the interaction with your applicatio
 
 ## Unsuccessful deliveries and retries
 
-In case of an unsuccessful response, Fabman will attempt to call the webhook URL multiple times before deactivating the webhook. The duration between attempts will grow exponentially longer to give your service time to recover.
+In case of an unsuccessful (i.e., non-2xx) response, Fabman will attempt to call the webhook URL multiple times before deactivating the webhook. The duration between attempts will grow exponentially longer to give your service time to recover.
 
 
 ## Paused or deactivated webhooks
 
-Paused webhooks (or webhooks deactivated after unsuccessful delivery) do not receive any events. But events from the selected categories will still be queued and will be submitted once you un-pause the webhook.
+Paused webhooks (or webhooks deactivated after unsuccessful delivery) do *not* receive any events. But events from the selected categories *will still be queued* and will be submitted once you un-pause the webhook.
 
 
 ## Event types
