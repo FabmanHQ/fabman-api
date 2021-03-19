@@ -53,7 +53,8 @@ Instead of cookies you can also use an API key token to authenticate your API re
 API keys don’t expire automatically and remain valid until you delete them.
 
 #### Creating an API key
-There’s no UI for creating API keys yet, but you can [create a key via the interactive documentation page](https://fabman.io/api/v1/documentation#/api-keys/postApikeys). You can then fetch the actual token via [GET /api-keys/{id}/api-key](https://fabman.io/api/v1/documentation#!/api45keys/getApikeysIdApikey).
+There’s no UI for creating API keys yet, but you can [create a key via the interactive documentation page](https://fabman.io/api/v1/documentation#/api-keys/postApikeys).
+You can then fetch the actual token via [GET /api-keys/{id}/token](https://fabman.io/api/v1/documentation#/api-keys/getApikeysIdToken).
 
 If you’ve set up a cURL cookie jar [as described above](#cookie-authentication), you can also create an API key via cURL:
 
