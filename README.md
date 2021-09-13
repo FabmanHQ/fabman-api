@@ -132,7 +132,13 @@ Resolving is a similar technique for reducing the number of requests needed. See
 
 ## Webhooks
 
-Use [Webhooks](sections/webhooks.md) to get notified whenever something changes (e.g. someone edits a member, adds a booking or turns on any equipment). This is useful to synchronize information between Fabman and another application or automate common tasks.
+Fabman’s [Webhooks](sections/webhooks.md) can send a request to an URL (eg, a script on your web server) whenever something happens in Fabman – someone books a machine, updates a member, cancels a package, or switches on a machine.
+Webhooks let you automate common tasks or develop two-way synchronizations between Fabman and your other systems (eg., CRM, ERP, or public website). Some examples:
+
+* Update your CRM when someone adds or edits a member.
+* Notify accounting whenever an invoice is created.
+* Apply special discounts when a charge is created.
+* Send an email to the lab manager whenever certain members start working in the lab.
 
 ## Entities
 
