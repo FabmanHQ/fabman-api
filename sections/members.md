@@ -1,6 +1,6 @@
 # Members
 
-Members belong to an [account](accounts.md), have a home [space](spaces.md) and may have a corresponding [user](users.md) that allows them to sign in and use the API amd the member or admin app.
+Members belong to an [account](accounts.md), have a home [space](spaces.md) and may have a corresponding [user](users.md) that allows them to sign in and use the API and the member or admin app.
 
 The privileges of a member (`member`, `admin` or `owner`) determine what their user is allowed to read or change via the API or web interface.
 
