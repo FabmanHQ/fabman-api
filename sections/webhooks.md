@@ -1,6 +1,6 @@
 # Webhooks
 
-Fabman can notify your application through webhooks when something is changed. A webhook consists of an URL to be called, which must be HTTPS, and a list of event categories that'll trigger calls.
+Fabman can notify your application through webhooks when something has changed. A webhook consists of an URL to be called, which must be HTTPS, and a list of event categories that'll trigger calls.
 
 For each event, Fabman will POST to the webhook URL with a JSON body that contains details about the event. Fabman will only consider HTTP status codes in the 2xx range to be a successful response. We will not follow a 3xx redirect.
 
