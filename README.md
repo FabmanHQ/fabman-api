@@ -14,41 +14,14 @@ You can browse all API endpoints, see required and optional fields and their def
 ### cURL
 cURL examples in this documentation can be copy & pasted into a shell prompt to try out requests.
 
+
 ## Authentication
 
-Most requests require authentication. You can use either cookies or API keys for authentication. Both cookies and API keys act as a bearer tokens: anyone who has that cookie or API key can see and change everything you have access to — so you want to guard them as well as you guard your password.
-
-### Cookie authentication
-
-The simplest way to authenticate is by obtaining an authentication cookie using your email address and password.
-
-If you're using the [interactive documentation page](#basics), you can simply sign in via [the web form](https://fabman.io/login) and your browser will automatically use that cookie for all API requests.
-
-You can also obtain it via cURL: First define where you want the cookie to be stored:
-
-``` shell
-export FABMAN_COOKIE=<path to store the cookie>
-# for example
-export FABMAN_COOKIE=~/.fabman-cookie
-```
-
-Then request a new cookie by `POST`ing to `/user/login`:
-
-``` shell
-curl --cookie-jar $FABMAN_COOKIE -H 'Content-Type: application/json' -d '{"emailAddress": "<your email address>", "password": "<your password>"}' https://fabman.io/api/v1/user/login
-```
-
-You can use this cookie for any subsequent request by adding the `--cookie` param:
-
-``` shell
-curl --cookie $FABMAN_COOKIE https://fabman.io/api/v1/members
-```
-
-
+Most requests require authentication. You can use either API keys or cookies for authentication. Both act as a bearer tokens: anyone who has that cookie or API key can see and change everything you have access to — so you want to guard them as well as you guard your password.
 
 ### API keys
 
-Instead of cookies you can also use an API key token to authenticate your API requests. Every API key belongs to a particular member. Any requests authenticated via an API key are executed as if they were made by the member that the API key belongs to.
+Every API key belongs to a particular member. Any requests authenticated via an API key are executed as if they were made by the member that the API key belongs to.
 
 API keys don’t expire automatically and remain valid until you delete them.
 
@@ -78,7 +51,35 @@ curl -u '<your api key token>:' https://fabman.io/api/v1/members
 curl -u '8d29ff56-b9e3-40b5-9a86-f423fe959b93:' https://fabman.io/api/v1/members
 ```
 
-Don't forget the colon after the token.
+Don't forget the colon after the token!
+
+
+### Cookie authentication
+
+Another way to authenticate API requests is via an authentication cookie using your email address and password.
+
+If you're using the [interactive documentation page](#basics), you can simply sign in via [the web form](https://fabman.io/login) and your browser will automatically use that cookie for all API requests.
+
+You can also obtain it via cURL: First define where you want the cookie to be stored:
+
+``` shell
+export FABMAN_COOKIE=<path to store the cookie>
+# for example
+export FABMAN_COOKIE=~/.fabman-cookie
+```
+
+Then request a new cookie by `POST`ing to `/user/login`:
+
+``` shell
+curl --cookie-jar $FABMAN_COOKIE -H 'Content-Type: application/json' -d '{"emailAddress": "<your email address>", "password": "<your password>"}' https://fabman.io/api/v1/user/login
+```
+
+You can use this cookie for any subsequent request by adding the `--cookie` param:
+
+``` shell
+curl --cookie $FABMAN_COOKIE https://fabman.io/api/v1/members
+```
+
 
 ## JSON data format
 
