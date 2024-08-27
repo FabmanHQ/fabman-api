@@ -7,9 +7,11 @@ For each event, Fabman will POST to the webhook URL with a JSON body that contai
 A webhook can be subscribed to updates from the following categories:
 
 * [Member](#member)
-* [Member package](#member-package)
-* [Member key](#member-key)
+* [Member credit](#member-credit)
 * [Member device](#member-device)
+* [Member key](#member-key)
+* [Member package](#member-package)
+* [Member payment method](#member-payment-method)
 * [Member training](#member-training)
 * [Equipment](#equipment)
 * [Activity log](#activity-log)
@@ -53,28 +55,89 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do *not* r
 ## Event types
 ### Member
 
+Possible events:
 * `member_created`
 * `member_updated`
 * `member_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"member": {…} // the created, updated or deleted member
 	}
 }
 ```
 
+### Member credit
+
+Possible events:
+* `memberCredit_created`
+* `memberCredit_updated`
+* `memberCredit_deleted`
+* `memberCredit_used`
+* `memberCredit_restored`
+
+Event payload:
+```
+{
+	…, // common fields (see above)
+	"details": {
+		"memberCredit": {…}, // the member credit
+		"member": {…}, // the affected member
+        "use": {…},    // Details about the credit use, including the amount and booking or activity ID. (Only exists for "memberCredit_used" and "memberCredit_restored" events.)
+	}
+}
+```
+### Member device
+
+A member device is a smartphone, tablet or computer that’s used to switch on equipment via QR codes.
+
+Possible events:
+* `memberDevice_created`
+* `memberDevice_updated`
+
+Event payload:
+```
+{
+	…, // common fields (see above)
+	"details": {
+		"device": {…}, // the device including its automatically determined name and user agent
+		"member": {…}, // the member whose device changed
+	}
+}
+```
+
+### Member key
+
+Possible events:
+* `memberKey_created`
+* `memberKey_updated`
+* `memberKey_deleted`
+
+Event payload:
+```
+{
+	…, // common fields (see above)
+	"details": {
+		"key": {…}, // the key including its type and ID token
+		"member": {…}, // the member whose key changed
+	}
+}
+```
+
 ### Member package
 
+Possible events:
 * `memberPackage_created`
 * `memberPackage_updated`
 * `memberPackage_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"memberPackage": {…}, // the details of this member’s package (fromDate, untilDate, …)
 		"member": {…}, // the affected member
@@ -83,48 +146,36 @@ Paused webhooks (or webhooks deactivated after unsuccessful delivery) do *not* r
 }
 ```
 
-### Member key
+### Member payment method
 
-* `memberKey_created`
-* `memberKey_updated`
-* `memberKey_deleted`
+Possible events:
+* `memberPaymentMethod_created`
+* `memberPaymentMethod_updated`
+* `memberPaymentMethod_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
-		"key": {…}, // the key including its type and ID token
-		"member": {…}, // the member whose key changed
+		"paymentMethod": {…}, // the created, updated or deleted payment method (including its type and type-specific details like IBAN or Stripe Id)
+		"member": {…}, // the affected member
 	}
 }
 ```
 
-### Member device
-
-A member device is a smartphone, tablet or computer that’s used to switch on equipment via QR codes.
-
-* `memberDevice_created`
-* `memberDevice_updated`
-
-```
-{
-	…, // common fields
-	"details": {
-		"device": {…}, // the device including its automatically determined name and user agent
-		"member": {…}, // the member whose device changed
-	}
-}
-```
 
 ### Member training
 
+Possible events:
 * `memberTraining_created`
 * `memberTraining_updated`
 * `memberTraining_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"memberTraining": {…}, // the created, updated or deleted training record
 		"member": {…}, // the affected member
@@ -134,13 +185,15 @@ A member device is a smartphone, tablet or computer that’s used to switch on e
 
 ### Equipment
 
+Possible events:
 * `resource_created`
 * `resource_updated`
 * `resource_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"resource": {…} // the created, updated or deleted equipment
 	}
@@ -149,12 +202,14 @@ A member device is a smartphone, tablet or computer that’s used to switch on e
 
 ### Activity log
 
+Possible events:
 * `resourceLog_created` A new entry in the activity log was created (because someone turned on a machine, asigned a key, …)
 * `resourceLog_updated` An existing log entry was modified, eg. because someone extended their session or stopped the machine.
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"log": {…}, // the created or updated log entry
 		"resource": {…}, // the affected resource
@@ -165,13 +220,15 @@ A member device is a smartphone, tablet or computer that’s used to switch on e
 
 ### Booking
 
+Possible events:
 * `booking_created`
 * `booking_updated`
 * `booking_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"booking": {…}, // the created, updated or deleted booking
 		"resource": {…}, // the affected resource
@@ -182,13 +239,15 @@ A member device is a smartphone, tablet or computer that’s used to switch on e
 
 ### Charge
 
+Possible events:
 * `charge_created`
 * `charge_updated`
 * `charge_deleted`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"charge": {…}, // the created, updated or deleted charge
 		"member": {…} // the affected member
@@ -198,14 +257,16 @@ A member device is a smartphone, tablet or computer that’s used to switch on e
 
 ### Invoice
 
+Possible events:
 * `invoice_created`
 
 	*Note: Creating an invoice will trigger `charge_updated` events for every existing charge that’s added to the invoice.*
 * `invoice_updated`
 
+Event payload:
 ```
 {
-	…, // common fields
+	…, // common fields (see above)
 	"details": {
 		"invoice": {…}, // the created or updated invoice
 		"charges": […], // all of the invoice’s charges
@@ -219,7 +280,7 @@ A member device is a smartphone, tablet or computer that’s used to switch on e
 
 	```
 	{
-		…, // common fields
+		…, // common fields (see above)
 		"details": {
 			"message": "…", // A message with the name of the member who triggered the test event
 			"createdBy": {…} // The member who triggered the test event
