@@ -15,6 +15,7 @@ A webhook can be subscribed to updates from the following categories:
 * [Member training](#member-training)
 * [Equipment](#equipment)
 * [Activity log](#activity-log)
+* [Bridge](#bridge)
 * [Booking](#booking)
 * [Charge](#charge)
 * [Invoice](#invoice)
@@ -212,8 +213,25 @@ Event payload:
 	…, // common fields (see above)
 	"details": {
 		"log": {…}, // the created or updated log entry
-		"resource": {…}, // the affected resource
+		"resource": {…}, // the affected equipment
 		"member": {…} // member, if applicable. Otherwise null
+	}
+}
+```
+
+### Bridge
+
+Possible events:
+* `bridge_create` A bridge was paired (or a new API key bridge was created)
+* `bridge_deleted` A bridge was deleted (or an equipment that had a bridge connected was deleted)
+
+Event payload:
+```
+{
+	…, // common fields (see above)
+	"details": {
+		"bridge": {…}, // the created or deleted bridge
+		"resource": {…}, // the affected equipment
 	}
 }
 ```
@@ -231,7 +249,7 @@ Event payload:
 	…, // common fields (see above)
 	"details": {
 		"booking": {…}, // the created, updated or deleted booking
-		"resource": {…}, // the affected resource
+		"resource": {…}, // the affected equipment
 		"member": {…} // the member who booked the equipment. (null if booked as "staff only")
 	}
 }
