@@ -149,6 +149,7 @@ The most important entities are:
 - [Charges](sections/charges.md)
 - [Invoices](sections/invoices.md)
 - [Webhooks](sections/webhooks.md)
+- [Authorization checks](sections/authorization-checks.md)
 
 Check the [live documentation](#live-documentation) for all available entities and endpoints.
 
