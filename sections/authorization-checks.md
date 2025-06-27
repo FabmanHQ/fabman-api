@@ -17,6 +17,8 @@ The general flow works like this:
     - You probably also want to add `renew=true` to keep the authorization check active and prevent it from being cancelled due to inactivity.
     - Adding `embed=authorizedMember` allows you to get back the member who authorized the check without having to fetch it with a separate request.
 
+You can query whether there is a pending authorization check for a particular resource by fetching the resource with [`GET /api/v1/resources/{id}?embed=authorizationCheck`](https://fabman.io/api/v1/documentation#/resources/getResourcesId).
+
 ## Live API documentation
 [https://fabman.io/api/v1/documentation#/authorization-checks](https://fabman.io/api/v1/documentation#/authorization-checks)
 
