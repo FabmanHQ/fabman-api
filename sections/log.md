@@ -19,6 +19,7 @@ An activity log record contains multiple enumeration fields:
 	* `'offline'`: A bridge was offline.
 	* `'resourceDisabled'`: An equipment was put out of order by an admin.
 	* `'resourceEnabled'`: An equipment was re-enabled by an admin.
+    * `'authorizationCheck'`: An [authorization check](authorization-checks.md) was performed on an equipment.
 
 * `stopType` can be either `null` (if not appilcable or not yet stopped) or one of:
 	* `'normal'`: The activity was stopped manually by the user.
@@ -44,4 +45,9 @@ An activity log record contains multiple enumeration fields:
 	* `'timeTable'`: The time was outside the time frame allowed by the member’s package.
 	* `'unknownKey'`: The key doesn't belong to any known member.
 	* `'unknownMember'`: The member ID provided in the access request was unknown.
+    * `'tooManyAttempts'`: Too many rejected access attempts happended within a short amount of time.
+    <!-- Not logged atm: * `'commandTimeout'`: An authorization check has timed out. -->
+    <!-- Not logged atm: * `'noTransaction'`: No authorization check was active on an equipment with `controlType = 'pos'`. -->
+    * `'thirdPartyError'`: Fabman has encountered an error while communicating with a third-party server (eg. to control a Nuki Smart lock that was set up for this equipment).
+    * `'notCheckedIn'`: The member was not checked in but the equipment requires members to check-in before using it.
 
